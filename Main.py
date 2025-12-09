@@ -1,11 +1,10 @@
 from Solver import Solver
 
 def main():
-    with open("input.txt", "r") as file:
-        instructions = file.readlines()
-        solver = Solver()
-        solver.process_instructions(instructions)
-        solver.print_results()
+    solver = Solver()
+    solver.load_instructions_from_file('input.txt')
+    solver.execute_instructions()
+    print(f"Number of times pointer_safe reached zero: {solver.counter_solution}")
 
 if __name__ == "__main__":
     main()
