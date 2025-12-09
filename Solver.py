@@ -16,16 +16,18 @@ class Solver:
                 self.rotate_left(amount)
             elif instruction.startswith("R"):
                 self.rotate_right(amount)
-
-            if self.pointer_safe == 0:
-                self.counter_solution += 1
     
     def rotate_left(self, amount):
-        self.pointer_safe -= amount
-        while self.pointer_safe < 0:
-            self.pointer_safe += 100  # Assuming a circular buffer of size 100
-    
+        for i in range(amount):
+            self.pointer_safe -= 1
+            if self.pointer_safe == 0:
+                self.counter_solution += 1
+            elif self.pointer_safe < 0:
+                self.pointer_safe = 99  # Assuming a circular buffer of size 100
+                
     def rotate_right(self, amount):
-        self.pointer_safe += amount
-        while self.pointer_safe >= 100:
-            self.pointer_safe -= 100  # Assuming a circular buffer of size 100
+        for i in range(amount):
+            self.pointer_safe += 1
+            if self.pointer_safe >= 100:
+                self.pointer_safe = 0  # Assuming a circular buffer of size 100
+                self.counter_solution += 1
